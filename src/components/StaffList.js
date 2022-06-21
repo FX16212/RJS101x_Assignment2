@@ -5,8 +5,12 @@ class StaffList extends React.Component {
 		const listNhanvien = this.props.staffs.map((nv) => {
 			return (
 				<div key={nv.id}>
-					<div className='col-12 m-2'>
-						<img src={nv.image} alt={nv.name} />
+					<div className='col-12 m-1'>
+						<img
+							style={{ width: '150px', height: '150px' }}
+							src={nv.image}
+							alt={nv.name}
+						/>
 						<p>{nv.name}</p>
 					</div>
 				</div>
@@ -16,7 +20,7 @@ class StaffList extends React.Component {
 			<div className='container'>
 				<h4>Nhân Viên</h4>
 				<br />
-				<div className='row'>{listNhanvien}</div>;
+				<div className='row'>{listNhanvien}</div>
 			</div>
 		);
 	}
