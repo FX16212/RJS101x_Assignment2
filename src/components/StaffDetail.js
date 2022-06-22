@@ -9,30 +9,31 @@ import {
 import { Link } from 'react-router-dom';
 import dateFormat from 'dateformat';
 
-function StaffDetail(props) {
-	console.log(props);
-	if (props.nv != null) {
-		return (
-			<div className='container'>
-				<div className='row'>
-					<Breadcrumb>
-						<BreadcrumbItem>
-							<Link to='/staff'>Nhân viên</Link>
-						</BreadcrumbItem>
-						<BreadcrumbItem active>{props.nv.name}</BreadcrumbItem>
-					</Breadcrumb>
-					<div className='col-12'>
-						<h3>{props.nv.name}</h3>
-						<hr />
+class StaffDetail extends React.Component {
+	render() {
+		if (this.props.nv != null) {
+			return (
+				<div className='container'>
+					<div className='row'>
+						<Breadcrumb>
+							<BreadcrumbItem>
+								<Link to='/nhanvien'>Nhân viên</Link>
+							</BreadcrumbItem>
+							<BreadcrumbItem active>{this.props.nv.name}</BreadcrumbItem>
+						</Breadcrumb>
+						<div className='col-12'>
+							<h3>{this.props.nv.name}</h3>
+							<hr />
+						</div>
+					</div>
+					<div className='row mb-3'>
+						<RenderStaff staff={this.props.nv} />
 					</div>
 				</div>
-				<div className='row mb-3'>
-					<RenderStaff staff={props.nv} />
-				</div>
-			</div>
-		);
-	} else {
-		return <div></div>;
+			);
+		} else {
+			return <div></div>;
+		}
 	}
 }
 
