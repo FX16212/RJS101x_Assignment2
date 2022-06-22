@@ -10,6 +10,19 @@ import {
 import { NavLink } from 'react-router-dom';
 
 class Header extends React.Component {
+	constructor(props) {
+		super(props);
+		this.toggleNav = this.toggleNav.bind(this);
+		this.state = {
+			isNavOpen: false,
+		};
+	}
+
+	toggleNav() {
+		this.setState({
+			isNavOpen: !this.state.isNavOpen,
+		});
+	}
 	render() {
 		return (
 			<React.Fragment>
@@ -21,10 +34,10 @@ class Header extends React.Component {
 								src='assets/images/logo.png'
 								height='30'
 								width='41'
-								alt='Ristorante Con Fusion'
+								alt='Quản lý nhân viên'
 							/>
 						</NavbarBrand>
-						<Collapse navbar>
+						<Collapse isOpen={this.state.isNavOpen} navbar>
 							<Nav navbar>
 								<NavItem>
 									<NavLink className='nav-link' to='/nhanvien'>
