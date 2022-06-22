@@ -17,19 +17,21 @@ class RenderDept extends Component {
 }
 
 //Container components
-function Department(props) {
-	const departments = props.dept.map((department) => {
+class Department extends Component {
+	render() {
+		const departments = this.props.dept.map((department) => {
+			return (
+				<div className='col-12 col-md-6 col-lg-4 mt-2 mb-2' key={department.id}>
+					<RenderDept dept={department} />
+				</div>
+			);
+		});
 		return (
-			<div className='col-12 col-md-6 col-lg-4 mt-2 mb-2' key={department.id}>
-				<RenderDept dept={department} />
+			<div className='container'>
+				<div className='row shadow m-3'>{departments}</div>
 			</div>
 		);
-	});
-	return (
-		<div className='container'>
-			<div className='row shadow m-3'>{departments}</div>
-		</div>
-	);
+	}
 }
 
 export default Department;

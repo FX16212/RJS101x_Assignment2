@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import dateFormat from 'dateformat';
 
 function StaffDetail(props) {
+	console.log(props);
 	if (props.nv != null) {
 		return (
 			<div className='container'>

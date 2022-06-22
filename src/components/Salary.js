@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
 	Card,
 	CardTitle,
@@ -31,37 +31,49 @@ function RenderSalary({ salary, colorSalary }) {
 	);
 }
 
-const Salary = (props) => {
-	const [sortSalary, setSortSalary] = useState(false);
+class Salary extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			sortSalary: false,
+			salaryScale: false,
+		};
+	}
+	render() {
+		const salary = this.props.luong
+			.sort((a, b) =>
+				this.state.sortSalary
+					? a.salaryScale - b.salaryScale
+					: b.salaryScale - a.salaryScale
+			)
+			.map((ss) => {
+				return (
+					<div className='col-12 col-md-6 col-lg-4 mt-2 mb-2' key={ss.id}>
+						<RenderSalary salary={ss} />
+					</div>
+				);
+			});
 
-	const salary = props.luong.map((ss) => {
 		return (
-			<div className='col-12 col-md-6 col-lg-4 mt-2 mb-2' key={ss.id}>
-				<RenderSalary salary={ss} />
+			<div className='container'>
+				<div className='row'>
+					<Breadcrumb>
+						<BreadcrumbItem>
+							<Link to='/staff'>Nhân viên</Link>
+						</BreadcrumbItem>
+						<BreadcrumbItem active>Bảng Lương</BreadcrumbItem>
+					</Breadcrumb>
+				</div>
+
+				<button
+					className='btn btn-danger'
+					onClick={() => this.setState({ sortSalary: !this.state.sortSalary })}
+				>
+					Sắp xếp theo Hệ số lương
+				</button>
+				<div className='row shadow mb-3'>{salary}</div>
 			</div>
 		);
-	});
-
-	return (
-		<div className='container'>
-			<div className='row'>
-				<Breadcrumb>
-					<BreadcrumbItem>
-						<Link to='/staff'>Nhân viên</Link>
-					</BreadcrumbItem>
-					<BreadcrumbItem active>Bảng Lương</BreadcrumbItem>
-				</Breadcrumb>
-			</div>
-
-			<button
-				className='btn btn-danger'
-				onClick={() => setSortSalary(!sortSalary)}
-			>
-				Sắp xếp theo Hệ số lương
-			</button>
-			<div className='row shadow mb-3'>{salary}</div>
-		</div>
-	);
-};
-
+	}
+}
 export default Salary;
