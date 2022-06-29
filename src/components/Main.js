@@ -7,6 +7,7 @@ import Department from './Department';
 import Footer from './Footer';
 import { Switch, Route } from 'react-router-dom';
 import { STAFFS, DEPARTMENTS } from '../data/staffs.js';
+import Home from './Home.js';
 
 class Main extends React.Component {
 	state = {
@@ -29,6 +30,8 @@ class Main extends React.Component {
 			<div>
 				<Header />
 				<Switch>
+					<Route path='/' exact component={Home} />
+					<Route path='/home' exact component={Home} />
 					<Route
 						exact
 						path='/nhanvien'
